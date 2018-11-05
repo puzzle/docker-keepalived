@@ -34,7 +34,6 @@ RUN apk --no-cache add \
     && rm -rf /container/keepalived-sources \
     && apk --no-cache del \
         autoconf \
-        curl \
         gcc \
         ipset-dev \
         iptables-dev \
