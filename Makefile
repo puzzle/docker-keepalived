@@ -1,4 +1,4 @@
-NAME = osixia/keepalived
+NAME = splattner/keepalived
 VERSION = 1.4.5
 
 .PHONY: build build-nocache test tag-latest push push-latest release git-tag-version
