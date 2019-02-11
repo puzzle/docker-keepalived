@@ -13,7 +13,14 @@ if [ ! -e "$FIRST_START_DONE" ]; then
   #
   sed -i "s|{{ KEEPALIVED_ROUTER_ID }}|$KEEPALIVED_ROUTER_ID|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
   sed -i "s|{{ KEEPALIVED_INTERFACE }}|$KEEPALIVED_INTERFACE|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
-  sed -i "s|{{ KEEPALIVED_PRIORITY }}|$KEEPALIVED_PRIORITY|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
+
+  if [ "$(hostname)" == "$MASTER_HOST" ]; then
+    echo "This Node should be Master"
+    sed -i "s|{{ KEEPALIVED_PRIORITY }}|$KEEPALIVED_MASTER_PRIORITY|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
+  else
+    sed -i "s|{{ KEEPALIVED_PRIORITY }}|$KEEPALIVED_PRIORITY|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
+  fi
+
   sed -i "s|{{ KEEPALIVED_PASSWORD }}|$KEEPALIVED_PASSWORD|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
 
   if [ -n "$KEEPALIVED_NOTIFY" ]; then
