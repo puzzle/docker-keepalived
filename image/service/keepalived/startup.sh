@@ -13,6 +13,7 @@ if [ ! -e "$FIRST_START_DONE" ]; then
   #
   sed -i "s|{{ KEEPALIVED_ROUTER_ID }}|$KEEPALIVED_ROUTER_ID|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
   sed -i "s|{{ KEEPALIVED_INTERFACE }}|$KEEPALIVED_INTERFACE|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
+  sed -i "s|{{ KEEPALIVED_TRACK_INTERFACE }}|$KEEPALIVED_TRACK_INTERFACE|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
 
   if [ "$(hostname)" == "$MASTER_HOST" ]; then
     echo "This Node should be Master"

@@ -1,5 +1,5 @@
 NAME = splattner/keepalived
-VERSION = 1.4.5
+VERSION = 2.0.19-pip
 
 .PHONY: build build-nocache test tag-latest push push-latest release git-tag-version
 

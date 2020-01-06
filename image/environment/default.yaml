@@ -1,6 +1,7 @@
 KEEPALIVED_COMMAND_LINE_ARGUMENTS: --log-detail --dump-conf
 
 KEEPALIVED_INTERFACE: eth0
+KEEPALIVED_TRACK_INTERFACE: eth0
 KEEPALIVED_PASSWORD: d0cker
 
 # For electing MASTER, highest priority wins.
