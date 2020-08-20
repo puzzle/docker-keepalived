@@ -15,6 +15,10 @@ if [ ! -e "$FIRST_START_DONE" ]; then
   sed -i "s|{{ KEEPALIVED_INTERFACE }}|$KEEPALIVED_INTERFACE|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
   sed -i "s|{{ KEEPALIVED_TRACK_INTERFACE }}|$KEEPALIVED_TRACK_INTERFACE|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
 
+  sed -i "s|{{ HTTP_CHECK_URL }}|$HTTP_CHECK_URL|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
+  sed -i "s|{{ HTTP_CHECK_TIMEOUT }}|$HTTP_CHECK_TIMEOUT|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
+  sed -i "s|{{ HTTP_CHECK_INTERVAL }}|$HTTP_CHECK_INTERVAL|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf
+
   if [ "$(hostname)" == "$MASTER_HOST" ]; then
     echo "This Node should be Master"
     sed -i "s|{{ KEEPALIVED_PRIORITY }}|$KEEPALIVED_MASTER_PRIORITY|g" ${CONTAINER_SERVICE_DIR}/keepalived/assets/keepalived.conf

@@ -20,3 +20,7 @@ KEEPALIVED_VIRTUAL_IPS:
 KEEPALIVED_NOTIFY: /container/service/keepalived/assets/notify.sh
 
 KEEPALIVED_ROUTER_ID: 51
+
+HTTP_CHECK_URL: http://localhost
+HTTP_CHECK_TIMEOUT: 5
+HTTP_CHECK_INTERVAL: 5
