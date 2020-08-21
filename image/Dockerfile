@@ -4,7 +4,7 @@ FROM osixia/alpine-light-baseimage:0.1.6
 LABEL maintainer="Puzzle ITC GmbH"
 
 # Keepalived version
-ARG KEEPALIVED_VERSION=2.0.19
+ARG KEEPALIVED_VERSION=2.0.20
 
 # Download, build and install Keepalived
 RUN apk --no-cache add \

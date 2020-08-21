@@ -139,6 +139,13 @@ This is the best solution if you have a private registry. Please refer to the [A
 
 ## Advanced User Guide
 
+### Docker Image Versioning
+There are three different kind of Docker tags used:
+
+1. `latest`: Latest build from latest Git commit. Do **not** use this tag for production environments.
+2. `<keepalived_version>-rc.*`: Test build of a new Keepalived version. Do **not** use this tag for production, only for testing/staging. This tag could be overridden.
+3. `<keepalived_version>`: Stable build of a "new" **and tested** Keepalived version. Use this tag for production workloads. This tag should **not** be overridden.
+
 ### Extend puzzle/keepalived image
 
 If you need to add your custom TLS certificate, bootstrap config or environment files the easiest way is to extends this image.
@@ -154,39 +161,6 @@ ADD environment /container/environment/01-custom
 ADD scripts.sh /container/service/keepalived/assets/notify.sh
 ```
 
-### Make your own keepalived image
-
-
-Clone this project :
-
-```bash
-git clone https://github.com/puzzle/docker-keepalived
-cd docker-keepalived
-```
-
-Adapt Makefile, set your image NAME and VERSION, for example :
-
-```
-NAME = puzzle/keepalived
-VERSION = 1.3.5
-```
-becomes :
-```
-NAME = billy-the-king/keepalived
-VERSION = 0.1.0
-```
-
-Add your custom scripts, environment files, config ...
-
-Build your image :
-```bash
-make build
-```
-
-Run your image :
-```bash
-docker run -d billy-the-king/keepalived:0.1.0
-```
 ### Tests
 
 We use **Bats** (Bash Automated Testing System) to test this image:
