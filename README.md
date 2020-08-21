@@ -6,7 +6,7 @@
 ![Docker Automated build](https://img.shields.io/docker/automated/puzzle/keepalived)
 ![Docker Build Status](https://img.shields.io/docker/build/puzzle/keepalived)
 
-Latest release: 2.0.19 - Keepalived 2.0.19 - [Docker Hub](https://hub.docker.com/r/puzzle/keepalived/) 
+Latest release: 2.0.20 - [Docker Hub](https://hub.docker.com/r/puzzle/keepalived/) 
 
 **A Docker image to run Keepalived.**
 > [keepalived.org](http://keepalived.org/)
@@ -142,9 +142,9 @@ This is the best solution if you have a private registry. Please refer to the [A
 ### Docker Image Versioning
 There are three different kind of Docker tags used:
 
-1. `latest`: Latest build from latest Git commit. Do **not** use this tag for production environments.
+1. `latest`: Latest build from latest Git commit to the `main` branch. Do **not** use this tag for production environments.
 2. `<keepalived_version>-rc.*`: Test build of a new Keepalived version. Do **not** use this tag for production, only for testing/staging. This tag could be overridden.
-3. `<keepalived_version>`: Stable build of a "new" **and tested** Keepalived version. Use this tag for production workloads. This tag should **not** be overridden.
+3. `<keepalived_version>`: Stable build of a **tested** Keepalived version. Use this tag for production workloads. This tag should **not** be overridden.
 
 ### Extend puzzle/keepalived image
 
@@ -154,7 +154,7 @@ Dockerfile example:
 
 ```
 FROM puzzle/keepalived:<current_version_here>
-MAINTAINER Your Name <your@name.com>
+LABEL maintainer="Your Name <your@name.com>"
 
 ADD keepalived.conf /container/service/keepalived/assets/keepalived.conf
 ADD environment /container/environment/01-custom
