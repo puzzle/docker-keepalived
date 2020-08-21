@@ -1,12 +1,11 @@
 # puzzle/keepalived
 
 ![Docker Pulls](https://img.shields.io/docker/pulls/puzzle/keepalived)
-![Docker Stars](https://img.shields.io/docker/stars/puzzle/keepalived)
-[![](https://images.microbadger.com/badges/image/puzzle/keepalived.svg)](https://microbadger.com/images/puzzle/keepalived "Get your own image badge on microbadger.com")
-![Docker Automated build](https://img.shields.io/docker/automated/puzzle/keepalived)
-![Docker Build Status](https://img.shields.io/docker/build/puzzle/keepalived)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/puzzle/keepalived)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/puzzle/keepalived)
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/puzzle/keepalived)
 
-Latest release: 2.0.20 - [Docker Hub](https://hub.docker.com/r/puzzle/keepalived/) 
+Get pre-built images from the [Docker Hub](https://hub.docker.com/r/puzzle/keepalived/).
 
 **A Docker image to run Keepalived.**
 > [keepalived.org](http://keepalived.org/)
