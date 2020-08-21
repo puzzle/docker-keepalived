@@ -1,4 +1,4 @@
-NAME = splattner/keepalived
+NAME = puzzle/keepalived
 VERSION = 2.0.19
 
 .PHONY: build build-nocache test tag-latest push push-latest release git-tag-version

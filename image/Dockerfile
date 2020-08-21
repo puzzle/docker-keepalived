@@ -1,7 +1,7 @@
 # Use osixia/light-baseimage
 # sources: https://github.com/osixia/docker-light-baseimage
-FROM osixia/alpine-light-baseimage:0.1.5
-MAINTAINER Sebastian Plattner <sebastian.plattner@gmail.com>
+FROM osixia/alpine-light-baseimage:0.1.6
+LABEL maintainer="Puzzle ITC GmbH"
 
 # Keepalived version
 ARG KEEPALIVED_VERSION=2.0.19

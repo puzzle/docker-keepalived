@@ -1,14 +1,14 @@
-# osixia/keepalived
+# puzzle/keepalived
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/splattner/keepalived.svg)][hub]
-[![Docker Stars](https://img.shields.io/docker/stars/splattner/keepalived.svg)][hub]
-[![](https://images.microbadger.com/badges/image/splattner/keepalived.svg)](http://microbadger.com/images/splattner/keepalived "Get your own image badge on microbadger.com")
+![Docker Pulls](https://img.shields.io/docker/pulls/puzzle/keepalived)
+![Docker Stars](https://img.shields.io/docker/stars/puzzle/keepalived)
+[![](https://images.microbadger.com/badges/image/puzzle/keepalived.svg)](https://microbadger.com/images/puzzle/keepalived "Get your own image badge on microbadger.com")
+![Docker Automated build](https://img.shields.io/docker/automated/puzzle/keepalived)
+![Docker Build Status](https://img.shields.io/docker/build/puzzle/keepalived)
 
-[hub]: https://hub.docker.com/r/osixia/keepalived/
+Latest release: 2.0.19 - Keepalived 2.0.19 - [Docker Hub](https://hub.docker.com/r/puzzle/keepalived/) 
 
-Latest release: 2.0.19 - Keepalived 2.0.19 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/splattner/keepalived/) 
-
-**A docker image to run Keepalived.**
+**A Docker image to run Keepalived.**
 > [keepalived.org](http://keepalived.org/)
 
 - [Quick start](#quick-start)
@@ -22,18 +22,19 @@ Latest release: 2.0.19 - Keepalived 2.0.19 - [Changelog](CHANGELOG.md) | [Docker
 		- [Link environment file](#link-environment-file)
 		- [Make your own image or extend this image](#make-your-own-image-or-extend-this-image)
 - [Advanced User Guide](#advanced-user-guide)
-	- [Extend osixia/keepalived:1.4.5 image](#extend-osixiakeepalived145-image)
+	- [Extend puzzle/keepalived:latest image](#extend-osixiakeepalived145-image)
 	- [Make your own keepalived image](#make-your-own-keepalived-image)
 	- [Tests](#tests)
 	- [Under the hood: osixia/light-baseimage](#under-the-hood-osixialight-baseimage)
-- [Security](#security)
-- [Changelog](#changelog)
+- [Credit](#credit)
 
 ## Quick start
 
 This image require the kernel module ip_vs loaded on the host (`modprobe ip_vs`) and need to be run with : --cap-add=NET_ADMIN --net=host
 
-    docker run --cap-add=NET_ADMIN --net=host -d osixia/keepalived:1.4.5
+```bash
+docker run --cap-add=NET_ADMIN --net=host -d puzzle/keepalived:latest
+```
 
 ## Beginner Guide
 
@@ -43,7 +44,9 @@ but setting your own keepalived.conf is possible. 2 options:
 
 - Link your config file at run time to `/container/service/keepalived/assets/keepalived.conf` :
 
-      docker run --volume /data/my-keepalived.conf:/container/service/keepalived/assets/keepalived.conf --detach osixia/keepalived:1.4.5
+```bash
+docker run --volume /data/my-keepalived.conf:/container/service/keepalived/assets/keepalived.conf --detach puzzle/keepalived:latest
+```
 
 - Add your config file by extending or cloning this image, please refer to the [Advanced User Guide](#advanced-user-guide)
 
@@ -53,7 +56,9 @@ You may have some problems with mounted files on some systems. The startup scrip
 
 To fix that run the container with `--copy-service` argument :
 
-		docker run [your options] osixia/keepalived:1.4.5 --copy-service
+```bash
+docker run [your options] puzzle/keepalived:latest --copy-service
+```
 
 ### Debug
 
@@ -62,12 +67,15 @@ Available levels are: `none`, `error`, `warning`, `info`, `debug` and `trace`.
 
 Example command to run the container in `debug` mode:
 
-	docker run --detach osixia/keepalived:1.4.5 --loglevel debug
+```bash
+docker run --detach puzzle/keepalived:latest --loglevel debug
+```
 
 See all command line options:
 
-	docker run osixia/keepalived:1.4.5 --help
-
+```bash
+docker run puzzle/keepalived:latest --help
+```
 
 ## Environment Variables
 
@@ -77,7 +85,7 @@ See how to [set your own environment variables](#set-your-own-environment-variab
 
 
 - **KEEPALIVED_INTERFACE**: Keepalived network interface. Defaults to `eth0`
-- **KEEPALIVED_PASSWORD**: Keepalived password. Defaults to `d0cker`
+- **KEEPALIVED_PASSWORD**: Keepalived password. Defaults to `sG9lWB37Bgc59cv7` (yes, we chose this a bit more secure default password on purpose)
 - **KEEPALIVED_PRIORITY** Keepalived node priority. Defaults to `150`
 - **KEEPALIVED_ROUTER_ID** Keepalived virtual router ID. Defaults to `51`
 
@@ -87,13 +95,14 @@ See how to [set your own environment variables](#set-your-own-environment-variab
 
   If you want to set this variable at docker run command add the tag `#PYTHON2BASH:` and convert the yaml in python:
 
-      docker run --env KEEPALIVED_UNICAST_PEERS="#PYTHON2BASH:['192.168.1.10', '192.168.1.11']" --detach osixia/keepalived:1.4.5
+```bash
+docker run --env KEEPALIVED_UNICAST_PEERS="#PYTHON2BASH:['192.168.1.10', '192.168.1.11']" --detach puzzle/keepalived:latest
+```
 
   To convert yaml to python online : http://yaml-online-parser.appspot.com/
 
 
 - **KEEPALIVED_VIRTUAL_IPS** Keepalived virtual IPs. Defaults to :
-
       - 192.168.1.231
       - 192.168.1.232
 
@@ -108,16 +117,19 @@ See how to [set your own environment variables](#set-your-own-environment-variab
 #### Use command line argument
 Environment variables can be set by adding the --env argument in the command line, for example:
 
-    docker run --env KEEPALIVED_INTERFACE="eno1" --env KEEPALIVED_PASSWORD="password!" \
-    --env KEEPALIVED_PRIORITY="100" --detach osixia/keepalived:1.4.5
-
+```bash
+docker run --env KEEPALIVED_INTERFACE="eno1" --env KEEPALIVED_PASSWORD="password!" \
+  --env KEEPALIVED_PRIORITY="100" --detach puzzle/keepalived:latest
+```
 
 #### Link environment file
 
-For example if your environment file is in :  /data/environment/my-env.yaml
+For example if your environment file is in: /data/environment/my-env.yaml
 
-	docker run --volume /data/environment/my-env.yaml:/container/environment/01-custom/env.yaml \
-	--detach osixia/keepalived:1.4.5
+```bash
+docker run --volume /data/environment/my-env.yaml:/container/environment/01-custom/env.yaml \
+  --detach puzzle/keepalived:latest
+```
 
 Take care to link your environment file to `/container/environment/XX-somedir` (with XX < 99 so they will be processed before default environment files) and not  directly to `/container/environment` because this directory contains predefined baseimage environment files to fix container environment (INITRD, LANG, LANGUAGE and LC_CTYPE).
 
@@ -127,47 +139,54 @@ This is the best solution if you have a private registry. Please refer to the [A
 
 ## Advanced User Guide
 
-### Extend osixia/keepalived:1.4.5 image
+### Extend puzzle/keepalived image
 
 If you need to add your custom TLS certificate, bootstrap config or environment files the easiest way is to extends this image.
 
 Dockerfile example:
 
-    FROM osixia/keepalived:1.4.5
-    MAINTAINER Your Name <your@name.com>
+```
+FROM puzzle/keepalived:<current_version_here>
+MAINTAINER Your Name <your@name.com>
 
-    ADD keepalived.conf /container/service/keepalived/assets/keepalived.conf
-    ADD environment /container/environment/01-custom
-    ADD scripts.sh /container/service/keepalived/assets/notify.sh
-
+ADD keepalived.conf /container/service/keepalived/assets/keepalived.conf
+ADD environment /container/environment/01-custom
+ADD scripts.sh /container/service/keepalived/assets/notify.sh
+```
 
 ### Make your own keepalived image
 
 
 Clone this project :
 
-	git clone https://github.com/osixia/docker-keepalived
-	cd docker-keepalived
+```bash
+git clone https://github.com/puzzle/docker-keepalived
+cd docker-keepalived
+```
 
 Adapt Makefile, set your image NAME and VERSION, for example :
 
-	NAME = osixia/keepalived
-	VERSION = 1.3.5
-
-	becomes :
-	NAME = billy-the-king/keepalived
-	VERSION = 0.1.0
+```
+NAME = puzzle/keepalived
+VERSION = 1.3.5
+```
+becomes :
+```
+NAME = billy-the-king/keepalived
+VERSION = 0.1.0
+```
 
 Add your custom scripts, environment files, config ...
 
 Build your image :
-
-	make build
+```bash
+make build
+```
 
 Run your image :
-
-	docker run -d billy-the-king/keepalived:0.1.0
-
+```bash
+docker run -d billy-the-king/keepalived:0.1.0
+```
 ### Tests
 
 We use **Bats** (Bash Automated Testing System) to test this image:
@@ -176,19 +195,15 @@ We use **Bats** (Bash Automated Testing System) to test this image:
 
 Install Bats, and in this project directory run :
 
-	make test
-
+```bash
+make test
+```
 
 ### Under the hood: osixia/light-baseimage
 
 This image is based on osixia/light-baseimage.
 More info: https://github.com/osixia/docker-light-baseimage
 
-## Security
-If you discover a security vulnerability within this docker image, please send an email to the Osixia! team at security@osixia.net. For minor vulnerabilities feel free to add an issue here on github.
+## Credit
 
-Please include as many details as possible.
-
-## Changelog
-
-Please refer to: [CHANGELOG.md](CHANGELOG.md)
+Thanks to [https://github.com/osixia/docker-keepalived](https://github.com/osixia/docker-keepalived) and [https://github.com/splattner/docker-keepalived](https://github.com/splattner/docker-keepalived)!
