@@ -5,27 +5,28 @@
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/puzzle/keepalived)
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/puzzle/keepalived)
 
-Get pre-built images from the [Docker Hub](https://hub.docker.com/r/puzzle/keepalived/).
+Get pre-built images from [quay.io](https://quay.io/repository/puzzle/keepalived) (preferred) or [Docker Hub](https://hub.docker.com/r/puzzle/keepalived/) (deprecated).
 
 **A Docker image to run Keepalived.**
 > [keepalived.org](http://keepalived.org/)
 
-- [Quick start](#quick-start)
-- [Beginner Guide](#beginner-guide)
-	- [Use your own Backup Manager config](#use-your-own-backup-manager-config)
-	- [Fix docker mounted file problems](#fix-docker-mounted-file-problems)
-	- [Debug](#debug)
-- [Environment Variables](#environment-variables)
-	- [Set your own environment variables](#set-your-own-environment-variables)
-		- [Use command line argument](#use-command-line-argument)
-		- [Link environment file](#link-environment-file)
-		- [Make your own image or extend this image](#make-your-own-image-or-extend-this-image)
-- [Advanced User Guide](#advanced-user-guide)
-	- [Extend puzzle/keepalived:latest image](#extend-osixiakeepalived145-image)
-	- [Make your own keepalived image](#make-your-own-keepalived-image)
-	- [Tests](#tests)
-	- [Under the hood: osixia/light-baseimage](#under-the-hood-osixialight-baseimage)
-- [Credit](#credit)
+- [puzzle/keepalived](#puzzlekeepalived)
+	- [Quick start](#quick-start)
+	- [Beginner Guide](#beginner-guide)
+		- [Use your own Keepalived config](#use-your-own-keepalived-config)
+		- [Fix docker mounted file problems](#fix-docker-mounted-file-problems)
+		- [Debug](#debug)
+	- [Environment Variables](#environment-variables)
+		- [Set your own environment variables](#set-your-own-environment-variables)
+			- [Use command line argument](#use-command-line-argument)
+			- [Link environment file](#link-environment-file)
+			- [Make your own image or extend this image](#make-your-own-image-or-extend-this-image)
+	- [Advanced User Guide](#advanced-user-guide)
+		- [Docker Image Versioning](#docker-image-versioning)
+		- [Extend puzzle/keepalived image](#extend-puzzlekeepalived-image)
+		- [Tests](#tests)
+		- [Under the hood: osixia/light-baseimage](#under-the-hood-osixialight-baseimage)
+	- [Credit](#credit)
 
 ## Quick start
 
